@@ -32,15 +32,6 @@ namespace BusinessLayer.Services
         public int UpdateProduct(int productId, Product product)
         {
             int rowsAffected = productDAL.UpdateProduct(productId, product);
-
-            //if (rowsAffected > 0)
-            //{
-            //    Console.WriteLine("Product updated successfully.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("No product found with the given ID.");
-            //}
             return rowsAffected;
         }
 
