@@ -1,0 +1,72 @@
+
+<div class="container-fluid mt-4">
+    <div class="row g-4 mb-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Income</h5>
+                    <p class="card-text fs-4">{{ getTotalIncome() | currency   }}</p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title
+">Total Expense</h5>
+                    <p class="card-text fs-4">{{ getTotalExpense() | currency  }}</p>  
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3" [ngClass]="getBalance() >= 0? 'bg-success': 'bg-danger' ">
+                <div class="card-body">
+                    <h5 class="card-title">Balance</h5>
+                    <p class="card-text fs-4">{{ getBalance() | currency }}</p>      
+                </div>
+            </div>      
+        </div>
+    </div>
+
+
+
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h2 class="mb-4">Transaction List</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <!-- <th scope="col">ID</th> -->
+            <th scope="col">Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Category</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
+            <!-- <th scope="col">Updated At</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let transaction of transactions">
+            <!-- <th scope="row">{{ transaction.id }}</th> -->
+            <td>{{ transaction.type }}</td>
+            <td>{{ transaction.amount | currency }}</td>
+            <td>{{ transaction.category }}</td>
+            <td>{{ transaction.createdAt | date }}</td>
+            <td>
+              <button edit-button class="btn btn-sm btn-primary me-2" (click)="onEdit(transaction)">
+                <i class="bi bi-pencil-square"></i> Edit
+              </button>
+
+              <button class="btn btn-sm btn-danger" (click)="onDelete(transaction)">
+                <i class="bi bi-trash"></i> Delete
+              </button> 
+              </td>
+            <!-- <td>{{ transaction.updatedAt }}</td> -->
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+

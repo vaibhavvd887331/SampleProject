@@ -1,0 +1,64 @@
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-log-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-light text-center">
+                    <h2 class="card-title mb-0">
+                    {{ editMode ? "Edit" : "Add" }}    Add Transaction</h2>          
+        </div>
+
+        <div class="card-body">
+            <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+                <div class="mb-3">
+                    <label for="type" class="form-label">Type</label>
+                    <select id="type" class="form-select" formControlName="type" (change)="onTypeChange()">
+                        <option value="Expense">Expense</option>
+                        <option value="Income">Income</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" class="form-select" formControlName="category">
+                        <option *ngFor="let category of availableCategories" [value]="category">{{ category }}</option>
+                    </select>
+                </div>
+
+                    <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input type="number" id="amount" class="form-control" formControlName="amount" placeholder="Enter amount">
+                    <div *ngIf="transactionForm.get('amount')?.invalid && transactionForm.get('amount')?.touched" class="text-danger mt-1">
+                        Amount is required and must be a positive number.
+                    </div>  
+                    </div>
+                  
+
+
+                    <!-- <div class="mb-3">
+                        <label for="createdAt" class="form-label">Date</label>
+                        <input type="date" id="createdAt" class="form-control" formControlName="createdAt">
+                    </div> -->
+
+
+                    <div class="d-grid gap-3 d-md-flex justify-content-md-end">
+                        <button type="button" class="btn btn-primary mb-3" (click)="onReset()">Cancel</button>
+
+                        <button type="submit" class="btn btn-primary mb-3" [disabled]="transactionForm.invalid">
+                            {{ editMode ? "Update" : "Save" }}
+                            Transaction</button>
+                    </div>
+                </div>
+
+
+
+                </form>
+        </div>
+
+      
+    
+
+
+
+</div>

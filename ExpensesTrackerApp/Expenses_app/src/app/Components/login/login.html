@@ -1,0 +1,57 @@
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h2 class="card-title mb-0">LogIn</h2>
+                </div>
+                
+                <div class="card-body">
+                    <div *ngIf="errorMessage" class="alert alert-danger">
+                        {{ errorMessage }}
+                    </div>
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" 
+                            id="email" 
+                            class="form-control" 
+                            [ngClass]="{'is-invalid': hasError('email', 'required') || hasError('email', 'email')}"
+                            formControlName="email" 
+                            placeholder="Enter email">
+                             <div class="invalid-feedback" *ngIf="hasError('email', 'required')">
+                            Email is required.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="hasError('email', 'email')">
+                            Please enter a valid email address.
+                        </div>
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" id="password" class="form-control" 
+                            [ngClass]="{'is-invalid': hasError('password', 'required') || hasError('password', 'minlength')}"
+                            formControlName="password" placeholder="Enter password">
+                        <div class="invalid-feedback" *ngIf="hasError('password', 'required')">
+                            Password is required.
+                        </div>
+                        <div class="invalid-feedback" *ngIf="hasError('password', 'minlength')">
+                            Password must be at least 6 characters long.
+                        </div>
+                        </div>
+                        
+                     
+                        
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>      
+                            <a routerLink="/signup" class="btn btn-link text-center">You Do not have an account? Register </a>
+
+                        </div>
+                    </form>
+
+        </div>
+    </div>
+</div>
