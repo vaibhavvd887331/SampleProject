@@ -37,7 +37,7 @@ jobs:
       # 3. Explicitly run the Angular build command
       # This step guarantees the index.html and other static files are generated.
       - name: Build Angular App
-        run: npm run build --configuration production
+        run: npm run build -- Expenses_app --configuration production
         working-directory: ./ExpensesTrackerApp/Expenses_app
           
       - name: Install OIDC Client from Core Package
@@ -74,6 +74,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+
 
 
 
