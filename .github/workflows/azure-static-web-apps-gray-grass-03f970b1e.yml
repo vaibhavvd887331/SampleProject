@@ -28,6 +28,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20' # Change this to match your specific Angular environment.
+        
+      # 2. Explicitly install dependencies inside the Angular app path
+      - name: Install App Dependencies
+        run: npm install
+        working-directory: ./ExpensesTrackerApp/Expenses_app
+
+      # 3. Explicitly run the Angular build command
+      # This step guarantees the index.html and other static files are generated.
+      - name: Build Angular App
+        run: npm run build --configuration production
+        working-directory: ./ExpensesTrackerApp/Expenses_app
           
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
@@ -63,6 +74,7 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+
 
 
 
