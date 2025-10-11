@@ -33,6 +33,9 @@
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
+  "engines": {
+    "node": ">=20.19.0"
+  },
   "devDependencies": {
     "@angular/build": "^20.3.2",
     "@angular/cli": "^20.3.2",
